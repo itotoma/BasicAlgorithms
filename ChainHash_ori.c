@@ -15,7 +15,6 @@ int Hash(int value){
 int search(int value){
     int index = Hash(value);
     struct data *q;
-    //該当indexを線形探索
     for(q = datalist[index]; q != NULL; q = q->next){
         if(value == q->value){
             return 1;
@@ -37,13 +36,11 @@ void insert(int value){
         if(q != NULL){
             while(q->next != NULL){
                 q = q->next;
-                //printf("test:%d",q->value);
             }
             q->next = p;
         }else{
             datalist[index] = p;
         }
-        //printf("\n value: %d, at %d\n",(*datalist[index]).value, index);
     }
 }
 
@@ -66,16 +63,21 @@ void delete(int value){
 
 
 int main(void){
-    int index = Hash(6);
-    int i;
     
     insert(6);
     insert(8);
+    insert(9);
+    insert(1);
 
-    printf("\n value: %d, at %d\n",(*datalist[index]).value, index);
-    printf("\n value: %d, at %d\n",(datalist[index]->next)->value, index);
+    printf("\n value: %d, at %d\n",(*datalist[0]).value, index);
+    printf("\n value: %d, at %d\n",(datalist[0]->next)->value, index);
+    printf("\n value: %d, at %d\n",(*datalist[1]).value, index);
+    printf("\n value: %d, at %d\n",(datalist[1]->next)->value, index);
+
     delete(6);
     delete(8);
+    delete(9);
+    delete(1);
     
     return 0;
 }
